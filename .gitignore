@@ -79,7 +79,5 @@ Desktop.ini
 test_output/
 output/
 
-# Keep sample data but ignore generated output in data directory
-data/*.glb
-data/tileset.json
-!data/winter_garden_residence.spz
+# Input directories
+data/
