@@ -126,6 +126,7 @@ const tileset = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
   - Verify your SPZ file is valid and not corrupted
   - Check file permissions on input and output directories
   - Look at the detailed error messages in the log
+  - Ensure there are no spaces in the input and output file paths
 
 ## Coordinate Systems
 
