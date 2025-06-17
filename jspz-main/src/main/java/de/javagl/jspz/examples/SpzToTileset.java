@@ -46,16 +46,24 @@ public class SpzToTileset
     /**
      * The entry point
      * 
-     * @param args Not used
+     * @param args Command line arguments: [inputFile] [outputDirectory] [optional:contentFileName]
      * @throws IOException If an IO error occurs
      */
     public static void main(String[] args) throws IOException
     {
-        // Adjust this as necessary:
-        String spzFileName = "./data/hornedlizard.spz";
-        String outputDirectory = "./data/";
+        if (args.length < 2) {
+            System.err.println("Usage: SpzToTileset <input.spz> <outputDirectory> [contentFileName]");
+            System.err.println("  input.spz       - Path to the input SPZ file");
+            System.err.println("  outputDirectory - Directory where output files will be written");
+            System.err.println("  contentFileName - Optional name for the GLB file (default: content.glb)");
+            System.exit(1);
+        }
         
-        createTileset(spzFileName, outputDirectory);
+        String spzFileName = args[0];
+        String outputDirectory = args[1];
+        String contentFileName = args.length > 2 ? args[2] : "content.glb";
+        
+        createTileset(spzFileName, outputDirectory, contentFileName);
     }
 
     /**
@@ -65,10 +73,11 @@ public class SpzToTileset
      * 
      * @param spzFileName The SPZ file name
      * @param outputDirectory The output directory
+     * @param contentFileName The content file name
      * @throws IOException If an IO error occurs
      */
     private static void createTileset(
-        String spzFileName, String outputDirectory) throws IOException
+        String spzFileName, String outputDirectory, String contentFileName) throws IOException
     {
         // Read the SPZ data and a GaussianCloud
         byte[] spzBytes = Files.readAllBytes(Paths.get(spzFileName));
@@ -87,15 +96,14 @@ public class SpzToTileset
         //print(gltfAsset);
 
         // Create some dummy tileset JSON
-        String contentUrl = "content.glb";
         float box[] = computeBoundingBox(g);
-        String tilesetJson = createTilesetJson(contentUrl, box);
+        String tilesetJson = createTilesetJson(contentFileName, box);
 
         // Prepare the output directory
         Paths.get(outputDirectory).toFile().mkdirs();
         
         // Write the glTF to the output directory
-        Path glbFilePath = Paths.get(outputDirectory, contentUrl);
+        Path glbFilePath = Paths.get(outputDirectory, contentFileName);
         GltfAssetWriter w = new GltfAssetWriter();
         w.writeBinary(gltfAsset, glbFilePath.toFile());
 

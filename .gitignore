@@ -1,13 +1,85 @@
-/.metadata
+# Maven build output
+target/
+*/target/
 
-/jspz-main/data
+# Maven wrapper
+.mvn/
+mvnw
+mvnw.cmd
 
-/jspz/.project
-/jspz/.settings
-/jspz/.classpath
-/jspz/target
+# Eclipse IDE files
+.metadata/
+.project
+.settings/
+.classpath
 
-/jspz-main/.project
-/jspz-main/.settings
-/jspz-main/.classpath
-/jspz-main/target
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# NetBeans files
+nbproject/
+build/
+nbbuild/
+dist/
+nbdist/
+
+# VS Code files
+.vscode/
+
+# Compiled Java classes
+*.class
+
+# JAR files (unless they are dependencies)
+*.jar
+!lib/*.jar
+
+# Log files
+*.log
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Python IDEs
+.spyderproject
+.spyproject
+.ropeproject
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*~
+.#*
+#*#
+
+# Test output directories (but keep sample data)
+test_output/
+output/
+
+# Keep sample data but ignore generated output in data directory
+data/*.glb
+data/tileset.json
+!data/winter_garden_residence.spz
